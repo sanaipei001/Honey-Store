@@ -1,4 +1,5 @@
-import ProductCard from "../components/ProductCard";
+// src/pages/shop.js
+import ProductCard from "@/components/ProductCard"; // Updated import with @ alias
 
 const products = [
   { id: 1, name: "Wildflower Honey", prices: { "8oz": 10, "16oz": 18, "32oz": 30 }, image: "/honey1.jpg" },

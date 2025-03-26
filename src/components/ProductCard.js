@@ -1,10 +1,13 @@
-import { useContext, useState } from "react"; // Added useState
-import { CartContext } from "@/pages/_app"; // Adjusted import path with alias
+// src/components/ProductCard.js
+import { useContext, useState } from "react";
+import { useRouter } from "next/router"; // Import useRouter for navigation
+import { CartContext } from "@/pages/_app";
 
 export default function ProductCard({ product }) {
-  const cartContext = useContext(CartContext); // Get context value
-  const { addToCart } = cartContext || {}; // Fallback if context is undefined
+  const cartContext = useContext(CartContext);
+  const { addToCart } = cartContext || {};
   const [size, setSize] = useState("8oz");
+  const router = useRouter(); // Initialize router
 
   const handleAddToCart = () => {
     if (!addToCart) {
@@ -12,7 +15,8 @@ export default function ProductCard({ product }) {
       return;
     }
     const item = { ...product, selectedSize: size, price: product.prices[size] };
-    addToCart(item);
+    addToCart(item); // Add item to cart
+    router.push("/cart"); // Redirect to cart page
   };
 
   return (
